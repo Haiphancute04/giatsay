@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     libzip-dev \
+	libpq-dev \
     zip \
     unzip
 
@@ -17,6 +18,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Cài đặt các PHP extensions cần thiết cho Laravel
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip pdo_pgsql
 
 # Bật mod_rewrite của Apache (quan trọng cho URL Laravel)
 RUN a2enmod rewrite
