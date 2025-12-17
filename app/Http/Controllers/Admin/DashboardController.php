@@ -30,14 +30,14 @@ class DashboardController extends Controller
         $completedId = $completedState ? $completedState->id : 4;
 
         $ordersPerMonth = DonDatLich::select(
-                DB::raw('MONTH(created_at) as month'),
-                DB::raw('COUNT(*) as total_orders'),
-                DB::raw("SUM(CASE WHEN tinhtrang_id = $completedId THEN tongtien ELSE 0 END) as total_revenue")
-            )
-            ->whereYear('created_at', date('Y'))
-            ->groupBy('month')
-            ->orderBy('month')
-            ->get();
+        DB::raw('EXTRACT(MONTH FROM created_at) as month'), // Sửa dòng này
+        DB::raw('COUNT(*) as total_orders'),
+        DB::raw("SUM(CASE WHEN tinhtrang_id = $completedId THEN tongtien ELSE 0 END) as total_revenue")
+        )
+        ->whereYear('created_at', date('Y'))
+        ->groupBy(DB::raw('EXTRACT(MONTH FROM created_at)')) // Sửa group by để chuẩn PostgreSQL
+        ->orderBy('month')
+        ->get();
 
         $months = [];
         $dataOrders = [];
