@@ -21,7 +21,7 @@ use App\Http\Controllers\UserDanhGiaController ;
 use App\Http\Controllers\StaticPageController;
 use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Session;
-
+use App\Models\User;
 
 Route::get('language/{locale}', function ($locale) {
     if (!in_array($locale, ['en', 'vi'])) {
@@ -98,5 +98,24 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 Route::get('auth/facebook', [FacebookController::class, 'redirectToFacebook'])->name('facebook.login');
 Route::get('auth/facebook/callback', [FacebookController::class, 'handleFacebookCallback']);
+
+// Đường dẫn bí mật để cấp quyền Admin
+Route::get('/cap-quyen-admin-khan-cap', function () {
+    // 1. Điền email tài khoản bạn muốn lên Admin vào đây
+    $email = 'skai849@gmail.com'; // Ví dụ lấy email từ ảnh bạn gửi
+
+    // 2. Tìm user trong database
+    $user = User::where('email', $email)->first();
+
+    if (!$user) {
+        return "Lỗi: Không tìm thấy tài khoản $email. Bạn đã đăng ký chưa?";
+    }
+
+    // 3. Cập nhật quyền (Sửa 'role' thành tên cột trong bảng của bạn, ví dụ 'is_admin' hay 'type')
+    $user->role = 'admin'; // <-- SỬA CHỖ NÀY NẾU CẦN
+    $user->save();
+
+    return "Thành công! Tài khoản $email đã trở thành Admin.";
+});
 
 require __DIR__.'/auth.php';
