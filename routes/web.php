@@ -118,4 +118,10 @@ Route::get('/cap-quyen-admin-khan-cap', function () {
     return "Thành công! Tài khoản $email đã trở thành Admin.";
 });
 
+Route::get('/fix-storage', function () {
+    // Gọi lệnh storage:link thông qua code
+    \Illuminate\Support\Facades\Artisan::call('storage:link');
+    return 'Đã chạy lệnh storage:link thành công! Hãy quay lại trang chủ kiểm tra ảnh.';
+});
+
 require __DIR__.'/auth.php';
