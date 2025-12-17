@@ -1,21 +1,22 @@
 # Sử dụng hình ảnh PHP 8.2 với Apache (Laravel 11 yêu cầu tối thiểu PHP 8.2)
-FROM php:8.2-apache
+FROM php:8.3-apache
 
 # Cài đặt các thư viện hệ thống cần thiết
 RUN apt-get update && apt-get install -y \
+    git \
+    curl \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
+    libzip-dev \
     zip \
-    unzip \
-    git \
-    curl
+    unzip
 
-# Xóa cache apt để giảm dung lượng
+# Xóa cache để giảm dung lượng
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Cài đặt các PHP extensions cần thiết cho Laravel
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Bật mod_rewrite của Apache (quan trọng cho URL Laravel)
 RUN a2enmod rewrite
