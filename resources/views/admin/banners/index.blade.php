@@ -23,7 +23,7 @@
         <tr>
             <td>
                 <div class="d-flex justify-content-center gap-1">
-                    <img src="{{ asset('hello/' . $banner->image) }}" width="150" style="object-fit: cover; border-radius: 5px;">
+                    <img src="{{ asset('storage/' . $banner->image) }}" width="150" style="object-fit: cover; border-radius: 5px;">
                 </div>
             </td>
             <td>{{ $banner->title }}</td>

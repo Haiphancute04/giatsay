@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-3">
                     @if($banner->image)
-                        <img src="{{ asset('hello/' . $banner->image) }}" class="img-thumbnail mb-2" style="max-height: 150px">
+                        <img src="{{ asset('storage/' . $banner->image) }}" class="img-thumbnail mb-2" style="max-height: 150px">
                     @endif
                 </div>
                 <div class="col-md-9">

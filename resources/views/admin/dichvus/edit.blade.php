@@ -85,7 +85,7 @@
                     @if($dichVu->hinhanh)
                         <div class="mb-3 p-2 border rounded bg-white text-center">
                             <div class="text-muted small mb-1">{{ __('Current Image') }}:</div>
-                            <img src="{{ asset('hello/' . $dichVu->hinhanh) }}" 
+                            <img src="{{ asset('storage/' . $dichVu->hinhanh) }}" 
                                  alt="Image" 
                                  class="img-thumbnail shadow-sm"
                                  style="max-width: 100%; max-height: 200px; object-fit: contain;">

@@ -54,7 +54,7 @@
                         <td class="text-center">
                             @if ($dichVu->hinhanh)
                                 {{-- Code hiển thị ảnh --}}
-                                <img src="{{ asset('hello/' . $dichVu->hinhanh) }}"
+                                <img src="{{ asset('storage/' . $dichVu->hinhanh) }}"
                                     alt="Service Image" 
                                     class="img-thumbnail"
                                     style="width: 70px; height: 70px; object-fit: cover;">

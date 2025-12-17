@@ -104,7 +104,7 @@
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                         <div class="banner-frame position-relative">
                             <a href="{{ $banner->link ?? '#' }}" class="d-block h-100">
-                                <img src="{{ asset('hello/' . $banner->image) }}" 
+                                <img src="{{ asset('storage/' . $banner->image) }}" 
                                      class="banner-img d-block w-100" 
                                      alt="{{ $banner->title }}">
                                 
