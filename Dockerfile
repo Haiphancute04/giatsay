@@ -42,6 +42,6 @@ RUN composer install --no-interaction --optimize-autoloader --no-dev
 RUN chown -R www-data:www-data storage bootstrap/cache
 
 # Expose cổng 80
-EXPOSE 
+EXPOSE 80
 
 CMD bash -c "php artisan migrate --force && apache2-foreground"
